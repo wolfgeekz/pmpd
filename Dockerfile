@@ -10,5 +10,6 @@ COPY php.ini /etc/php/7.2/fpm
 COPY startup /usr/local/bin/startup
 RUN chmod 775 /usr/local/bin/startup
 RUN cd /opt && git clone https://github.com/MattsShack/Plex-Movie-Poster-Display.git && cp -R Plex-Movie-Poster-Display/* /var/www/html && chmod -R 774 /var/www/html && chown -R www-data:www-data /var/www/html && rm -f /var/www/html/index.nginx-debian.html
+RUN ln -snf /config/config.php /var/www/html/config.php
 EXPOSE 80
 CMD ["/usr/local/bin/startup"]
